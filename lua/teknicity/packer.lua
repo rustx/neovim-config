@@ -42,6 +42,11 @@ vim.cmd([[
   augroup end
 ]])
 
+-- Close Neotree if this is the last window
+vim.cmd([[
+  autocmd WinClosed,WinEnter * if winnr('$') == 1 && &ft == "neo-tree" | q | endif
+]])
+
 -- load plugins
 packer = packer or require("packer")
 -- Only required if you have packer configured as `opt`
