@@ -1,50 +1,59 @@
+local opt = vim.opt
+local home = os.getenv('HOME')
+
 -- Gui options
-vim.opt.guicursor = ""
-vim.opt.guifont = 'Hack Nerd Font'
-vim.opt.termguicolors = true
-vim.opt.background = 'dark'
-vim.opt.mouse = 'a'
-vim.opt.scrolloff = 8
+opt.guicursor = ''                                   -- Set gui cursor
+opt.guifont = 'Hack Nerd Font'                       -- Set gui font
+opt.termguicolors = true                             -- Use terminal gui colors
+opt.background = 'dark'                              -- Set gui background
+opt.mouse = 'a'                                      -- Mouse is active in all modes
+opt.scrolloff = 8                                    -- Minimal number of lines to keep between above and below the cursor 
 
 -- Terminal options
-vim.opt.cf = true
-vim.opt.encoding = 'utf-8'
-vim.opt.history = 256
-vim.opt.termencoding = 'utf-8'
-vim.opt.backspace = 'indent,eol,start'
+opt.cf = true                                        -- Enable error files & error jumping
+opt.encoding = 'utf-8'                               -- File encoding
+opt.history = 256                                    -- Number of operations to remember in history
+opt.termencoding = 'utf-8'                           -- Terminal encoding
+opt.backspace = 'indent,eol,start'                   -- Indentation on new line
 
 -- Window options
-vim.opt.title = true
-vim.opt.titlestring= "%F"
-vim.opt.autowrite = true
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.cindent = true
-vim.opt.cinwords= 'if,else,while,do,for,switch,case'
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.foldmethod = 'syntax'
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99
-vim.opt.autochdir = false
-vim.opt.smartindent = true
-vim.opt.wrap = false
+opt.title = true                                     -- Window title
+opt.titlestring= '%F'                                -- Title name as string
+opt.autowrite = true                                 -- Writes on make/shell commands 
+opt.number = true                                    -- Set lines number
+opt.relativenumber = true                            -- Set relative lines number
+opt.wrap = false                                     -- Don't wrap text to fit page size
+
+-- Indentation options
+opt.cindent = true                                   -- Set indentation
+opt.cinwords= 'if,else,while,do,for,switch,case'     -- Words triggering indentation
+opt.tabstop = 2                                      -- Default tab stop is 2 spaces
+opt.softtabstop = 2                                  -- Default tag stop is 2 spaces
+opt.shiftwidth = 2                                   -- How many columns to reindent
+opt.expandtab = true                                 -- Replace tab characters by spaces
+opt.autochdir = false                                -- Don't change dirs when opening files
+opt.smartindent = true                               -- Use smart indentation 
+
+-- Folding
+--opt.foldenable = true                                -- Enable folding
+--opt.foldmethod = 'syntax'                            -- Method to use for folding
+--opt.foldlevel = 99                                   -- Max level for folding
+opt.foldmethod = 'expr'
+opt.foldexpr = 'nvim_treesitter#foldexpr()'
+opt.foldenable = false
 
 -- Backup options
-vim.opt.swapfile = false
-vim.opt.backup = true
-vim.opt.backupdir = os.getenv("HOME") .. '/.vim/backups'
-vim.opt.directory = os.getenv("HOME") .. '/.vim/tmp'
-vim.opt.undodir = os.getenv("HOME") .. '/.vim/undodir'
-vim.opt.undofile = true
-vim.opt.laststatus = 2
-vim.opt.updatetime = 50
+opt.backup = true                                    -- Activate file backup
+opt.backupdir = home  .. '/.vim/backups'             -- Backup directory
+opt.directory = home.. '/.vim/tmp'                   -- Temporary directory
+opt.undodir = home .. '/.vim/undodir'                -- Directory for undo actions
+opt.undofile = true                                  -- Use file for undoing actions
+opt.laststatus = 2                                   -- Shows a marker for modified file
+opt.updatetime = 5                                   -- The time before flushing changes
+opt.swapfile = false                                 -- Don't use swapfile
 
--- Hightlight options
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
-
+-- Search options
+opt.hlsearch = false                                 -- Don't highlight search results
+opt.incsearch = true                                 -- Search incrementally
+opt.signcolumn = 'yes'                               -- Sign column
+opt.isfname:append("@-@")                            -- Add @ character to allowed filenames
