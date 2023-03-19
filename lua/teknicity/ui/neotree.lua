@@ -200,3 +200,9 @@ require("neo-tree").setup({
     }
   }
 })
+
+-- Close Neotree if this is the last window
+vim.api.nvim_create_autocmd({ 'WinClosed', 'WinEnter' }, {
+  pattern = '*',
+  command = "if winnr('$') == 1 && &ft == 'neo-tree' | q | endif"
+})
