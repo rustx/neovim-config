@@ -33,21 +33,20 @@ if fn.empty(fn.glob(install_path)) > 0 then
   end
 end
 
-
+local packer_user_config = vim.api.nvim_create_augroup('packer_user_config', { clear = false })
 -- Regenerate compiled loader file on file save
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  pattern = 'plugins.lua',
+  group = packer_user_config,
+  command = 'source <afile> | PackerCompile'
+})
 
--- Close Neotree if this is the last window
-vim.cmd([[
-  autocmd WinClosed,WinEnter * if winnr('$') == 1 && &ft == "neo-tree" | q | endif
-]])
+vim.api.nvim_create_autocmd({'BufWritePre'}, {
+  pattern = '*',
+  command = '%s/\\s\\+$//e'
+})
 
--- load plugins
+-- Load required plugins
 packer = packer or require("packer")
 -- Only required if you have packer configured as `opt`
 vim.cmd.packadd('packer.nvim')
