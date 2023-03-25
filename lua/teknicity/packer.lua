@@ -85,6 +85,7 @@ return require('packer').startup(function(use)
   use 'theprimeagen/refactoring.nvim'
   use 'mbbill/undotree'
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
   use 'airblade/vim-gitgutter'
