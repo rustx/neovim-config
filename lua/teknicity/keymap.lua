@@ -1,5 +1,8 @@
 local km = vim.keymap
 
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
 vim.g.mapleader = ' '
 
 -- Netrw folder navigation
@@ -107,3 +110,16 @@ km.set('n', "<leader>fE", "zE<CR>")
 
 -- Undotree
 km.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- Trouble quickfix toggle
+km.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+  { silent = true, noremap = true }
+)
+
+-- Harpoon bookmarks
+km.set("n", "<leader>ha", mark.add_file)
+km.set("n", "<leader>he", ui.toggle_quick_menu)
+km.set("n", "<leader>h1", function() ui.nav_file(1) end)
+km.set("n", "<leader>h2", function() ui.nav_file(2) end)
+km.set("n", "<leader>h3", function() ui.nav_file(3) end)
+km.set("n", "<leader>h4", function() ui.nav_file(4) end)
