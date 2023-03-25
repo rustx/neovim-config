@@ -58,7 +58,7 @@ km.set("n", "<leader><leader>", function()
 end)
 
 -- Git commands
-km.set("n", "<leader>gs", "<cmd>Git<CR>")
+km.set("n", "<leader>gs", "<cmd>bo Git<CR>")
 km.set("n", "<leader>ga", "<cmd>Gwrite<CR>")
 km.set("n", "<leader>gc", "<cmd>Git commit --verbose<CR>")
 km.set("n", "<leader>gsh", "<cmd>Git push<CR>")
@@ -100,7 +100,10 @@ km.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]])
 km.set("n", "<leader>df", "<cmd>TagbarToggle<CR>")
 
 -- Fold
-km.set('n', '<leader>', "za<CR>")
+km.set('n', "<leader>fa", "za<CR>")
+km.set('n', "<leader>fM", "zM<CR>")
+km.set('n', "<leader>fr", "zR<CR>")
+km.set('n', "<leader>fE", "zE<CR>")
 
 -- Undotree
 km.set("n", "<leader>u", vim.cmd.UndotreeToggle)
