@@ -8,4 +8,3 @@ require('teknicity.ui.refactoring')
 require('teknicity.ui.telescope')
 require('teknicity.ui.treesitter')
 require('teknicity.ui.trouble')
-

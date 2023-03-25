@@ -2,7 +2,7 @@ vim.opt.background = 'dark'
 
 -- Enable colors in the terminal.
 if vim.fn.has('termguicolors') then
-    vim.cmd('set termguicolors')
+  vim.cmd('set termguicolors')
 end
 
 require 'teknicity.theme.rose-pine'
