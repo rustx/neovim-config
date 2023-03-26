@@ -1,4 +1,5 @@
 local opt = vim.opt
+local g = vim.g
 local home = os.getenv('HOME')
 
 -- Gui options
@@ -7,7 +8,7 @@ opt.guifont = 'Hack Nerd Font'                       -- Set gui font
 opt.termguicolors = true                             -- Use terminal gui colors
 opt.background = 'dark'                              -- Set gui background
 opt.mouse = 'a'                                      -- Mouse is active in all modes
-opt.scrolloff = 8                                    -- Minimal number of lines to keep between above and below the cursor 
+opt.scrolloff = 8                                    -- Minimal number of lines to keep between above and below the cursor
 
 -- Terminal options
 opt.cf = true                                        -- Enable error files & error jumping
@@ -19,7 +20,7 @@ opt.backspace = 'indent,eol,start'                   -- Indentation on new line
 -- Window options
 opt.title = true                                     -- Window title
 opt.titlestring= '%F'                                -- Title name as string
-opt.autowrite = true                                 -- Writes on make/shell commands 
+opt.autowrite = true                                 -- Writes on make/shell commands
 opt.number = true                                    -- Set lines number
 opt.relativenumber = true                            -- Set relative lines number
 opt.wrap = false                                     -- Don't wrap text to fit page size
@@ -32,7 +33,7 @@ opt.softtabstop = 2                                  -- Default tag stop is 2 sp
 opt.shiftwidth = 2                                   -- How many columns to reindent
 opt.expandtab = true                                 -- Replace tab characters by spaces
 opt.autochdir = false                                -- Don't change dirs when opening files
-opt.smartindent = true                               -- Use smart indentation 
+opt.smartindent = true                               -- Use smart indentation
 
 -- Folding
 --opt.foldenable = true                                -- Enable folding
@@ -57,3 +58,7 @@ opt.hlsearch = false                                 -- Don't highlight search r
 opt.incsearch = true                                 -- Search incrementally
 opt.signcolumn = 'yes'                               -- Sign column
 opt.isfname:append("@-@")                            -- Add @ character to allowed filenames
+
+-- Global variable
+g.undotree_WindowLayout = 3
+g.undotree_SplitWidth = 50
