@@ -1,8 +1,6 @@
 local lsp = require("lsp-zero")
 
-lsp.preset("recommended")
-
-lsp.ensure_installed({
+local servers = {
   'tsserver',
   'eslint',
   'rust_analyzer',
@@ -16,11 +14,23 @@ lsp.ensure_installed({
   'tailwindcss',
   'graphql',
   'prismals',
+  'pylsp',
   'svelte',
   'tflint',
   'terraformls',
   'yamlls'
-})
+}
+
+-- Use recommended presets
+lsp.preset("recommended")
+
+-- Install lsp servers
+lsp.ensure_installed(servers)
+
+-- Configure lsp servers basics
+for _, s in pairs(servers) do
+  lsp.configure(s, {})
+end
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {
@@ -30,6 +40,41 @@ lsp.configure('lua_ls', {
         globals = { 'vim' }
       }
     }
+  }
+})
+
+lsp.configure('pylsp', {
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = { 'W391' },
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+})
+
+lsp.configure('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      diagnostics = {
+        enable = false,
+      }
+    }
+  }
+})
+
+lsp.format_mapping('gq', {
+  servers = {
+    ['lua_ls']        = { 'lua' },
+    ['rust_analyzer'] = { 'rust' },
+    ['yamlls']        = { 'yaml' },
+    ['gopls']         = { 'go' },
+    ['pylsp']         = { 'python' },
+    ['tsserver']      = { 'typescript' },
+    ['terraformls']   = { 'terraform' },
   }
 })
 
@@ -50,6 +95,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
+  manage_nvim_cmp = true,
   suggest_lsp_servers = false,
   sign_icons = {
     error = 'E',
@@ -59,7 +105,7 @@ lsp.set_preferences({
   }
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr, remap = false }
 
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
@@ -73,16 +119,6 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 end)
-
-lsp.format_mapping('gq', {
-  servers = {
-    ['lua_ls'] = { 'lua' },
-    ['rust_analyzer'] = { 'rust' },
-    ['yamlls'] = { 'yaml' },
-    ['gopls'] = { 'go' },
-    ['tsserver'] = { 'typescript' },
-  }
-})
 
 lsp.setup()
 
