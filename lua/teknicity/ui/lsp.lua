@@ -1,11 +1,17 @@
 local lsp = require("lsp-zero")
 
 local servers = {
+  'bashls',
+  'docker_compose_language_service',
+  'dockerls',
   'tsserver',
   'eslint',
   'rust_analyzer',
+  'jedi_language_server',
+  'jsonls',
   'lua_ls',
   'gopls',
+  'golangci_lint_ls',
   'volar',
   'emmet_ls',
   'html',
@@ -27,10 +33,10 @@ lsp.preset("recommended")
 -- Install lsp servers
 lsp.ensure_installed(servers)
 
--- Configure lsp servers basics
-for _, s in pairs(servers) do
-  lsp.configure(s, {})
-end
+-- -- Configure lsp servers basics
+-- for _, s in pairs(servers) do
+--   lsp.configure(s, {})
+-- end
 
 -- Fix Undefined global 'vim'
 lsp.configure('lua_ls', {
@@ -38,29 +44,6 @@ lsp.configure('lua_ls', {
     Lua = {
       diagnostics = {
         globals = { 'vim' }
-      }
-    }
-  }
-})
-
-lsp.configure('pylsp', {
-  settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = { 'W391' },
-          maxLineLength = 100
-        }
-      }
-    }
-  }
-})
-
-lsp.configure('rust_analyzer', {
-  settings = {
-    ['rust-analyzer'] = {
-      diagnostics = {
-        enable = false,
       }
     }
   }
