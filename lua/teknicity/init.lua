@@ -1,4 +1,5 @@
 require('teknicity.packer')
+require('teknicity.autocmd')
 require('teknicity.config')
 require('teknicity.keymap')
 require('teknicity.ui')

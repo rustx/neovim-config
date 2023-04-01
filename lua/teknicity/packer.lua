@@ -1,53 +1,19 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
 -- Install packer if does not exist
-local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-local present
-local packer
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path
-  }
-
-  -- vim.cmd "packadd packer.nvim"
-
-  present, packer = pcall(require, "packer")
-
-  if present then
-    print "Packer cloned successfully."
-  else
-    error(string.format(
-      "Couldn't clone packer!\nPacker path: %s\n%s",
-      install_path,
-      packer
-    ))
-
-    return
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
   end
+  return false
 end
 
-local packer_user_config = vim.api.nvim_create_augroup('packer_user_config', { clear = false })
-
--- Regenerate compiled loader file on file save
-vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
-  pattern = 'plugins.lua',
-  group = packer_user_config,
-  command = 'source <afile> | PackerCompile'
-})
-
--- Clean end of lines at save
-vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
-  pattern = '*',
-  command = '%s/\\s\\+$//e'
-})
-
+local packer_bootstrap = ensure_packer()
+if packer_bootstrap then
+  print('Packer installation done successfully')
+end
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
