@@ -2,7 +2,7 @@ require('lualine').setup {
   options = {
     theme = 'auto' or 'rose-pine',
     disabled_filetypes = {
-      statusline = { 'neo-tree' }
+      statusline = { 'neo-tree', 'undotree', 'tagbar'}
     }
   },
   -- tabline = {
