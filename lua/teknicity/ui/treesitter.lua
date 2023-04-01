@@ -10,7 +10,6 @@ require 'nvim-treesitter.configs'.setup {
     "gomod",
     "gosum",
     "hcl",
-    "help",
     "html",
     "http",
     "javascript",
@@ -25,6 +24,7 @@ require 'nvim-treesitter.configs'.setup {
     "terraform",
     "tsx",
     "typescript",
+    "vim",
     "yaml"
   },
 
