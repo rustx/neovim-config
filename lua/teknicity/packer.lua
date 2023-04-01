@@ -16,7 +16,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     install_path
   }
 
-  vim.cmd "packadd packer.nvim"
+  -- vim.cmd "packadd packer.nvim"
 
   present, packer = pcall(require, "packer")
 
@@ -34,6 +34,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 local packer_user_config = vim.api.nvim_create_augroup('packer_user_config', { clear = false })
+
 -- Regenerate compiled loader file on file save
 vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   pattern = 'plugins.lua',
@@ -41,15 +42,12 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   command = 'source <afile> | PackerCompile'
 })
 
+-- Clean end of lines at save
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = '*',
   command = '%s/\\s\\+$//e'
 })
 
--- Load required plugins
-packer = packer or require("packer")
--- Only required if you have packer configured as `opt`
-vim.cmd.packadd('packer.nvim')
 
 return require('packer').startup(function(use)
   -- Packer can manage itself
@@ -78,18 +76,26 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Treesitter setup
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'lukas-reineke/indent-blankline.nvim'
+  use 'nvim-treesitter/nvim-treesitter-context'
   use 'nvim-treesitter/playground'
+
+  use 'lukas-reineke/indent-blankline.nvim'
   use 'theprimeagen/harpoon'
   use 'theprimeagen/refactoring.nvim'
+
+  -- Undotree
   use 'mbbill/undotree'
+
+  -- Git commands
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
+  use 'airblade/vim-gitgutter'
+
+  -- Useful vim commands
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
-  use 'airblade/vim-gitgutter'
-  use 'nvim-treesitter/nvim-treesitter-context'
 
   use {
     'akinsho/toggleterm.nvim',
@@ -197,11 +203,9 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- bufferline setup
   use 'nvim-tree/nvim-web-devicons'
   use { 'romgrk/barbar.nvim', requires = 'nvim-web-devicons' }
-
-  -- using packer.nvim
-  use { 'akinsho/bufferline.nvim', tag = 'v3.*', requires = 'nvim-tree/nvim-web-devicons' }
 
   -- hashicorp setup
   use 'hashivim/vim-terraform'
