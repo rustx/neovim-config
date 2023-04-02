@@ -165,7 +165,7 @@ return require('packer').startup(function(use)
       -- in the form "LspDiagnosticsSignWarning"
 
 
-      vim.cmd([[nnoremap \ :Neotree toggle<cr>]])
+      vim.cmd([[nnoremap \ :Neotree float toggle<cr>]])
     end
   }
 
