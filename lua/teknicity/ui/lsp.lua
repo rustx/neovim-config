@@ -49,6 +49,14 @@ lsp.configure('lua_ls', {
   }
 })
 
+lsp.configure('yamlls', {
+  settings = {
+    yaml = {
+      keyOrdering = false
+    }
+  }
+})
+
 lsp.format_mapping('gq', {
   servers = {
     ['lua_ls']        = { 'lua' },
@@ -104,6 +112,12 @@ lsp.on_attach(function(_, bufnr)
 end)
 
 lsp.setup()
+
+
+-- Troubleshoot configuration
+-- :lua require('lsp-zero.check').run('lua_ls')
+-- :lua require('lsp-zero.check').inspect_settings('tsserver')
+-- :lua require('lsp-zero.check').inspect_server_config('tsserver')
 
 vim.diagnostic.config({
   virtual_text = true
