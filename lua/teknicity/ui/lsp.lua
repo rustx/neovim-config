@@ -22,6 +22,7 @@ local servers = {
   'prismals',
   'pylsp',
   'svelte',
+  'sqlls',
   'tflint',
   'terraformls',
   'yamlls'
