@@ -19,6 +19,7 @@ require 'nvim-treesitter.configs'.setup {
     "make",
     "markdown",
     "python",
+    "rasi",
     "rust",
     "scala",
     "terraform",
