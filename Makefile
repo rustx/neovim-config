@@ -1,4 +1,4 @@
-default: help
+default: install
 
 V = 0
 Q = $(if $(filter 1,$V),,@)

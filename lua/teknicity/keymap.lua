@@ -20,7 +20,7 @@ km.set("n", "J", "mzJ`z")
 km.set("n", "<C-d>", "<C-d>zz")
 km.set("n", "<C-u>", "<C-u>zz")
 
--- Search up/down
+-- Search up/down, keep view middle screen
 km.set("n", "n", "nzzzv")
 km.set("n", "N", "Nzzzv")
 
