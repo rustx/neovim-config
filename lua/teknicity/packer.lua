@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
   use { 'rose-pine/neovim', as = 'rose-pine' }
   use 'marko-cerovac/material.nvim'
   use 'gbprod/nord.nvim'
+  use 'projekt0n/github-nvim-theme'
 
   use {
     'folke/trouble.nvim',

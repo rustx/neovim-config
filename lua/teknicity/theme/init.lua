@@ -8,3 +8,4 @@ end
 require 'teknicity.theme.rose-pine'
 -- require 'teknicity.theme.nord'
 -- require 'teknicity.theme.material'
+-- require 'teknicity.theme.github'
