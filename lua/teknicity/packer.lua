@@ -178,8 +178,8 @@ return require('packer').startup(function(use)
   use 'hashivim/vim-terraform'
   use 'hashivim/vim-vagrant'
   use 'hashivim/vim-consul'
-  use "hashivim/vim-packer"
-  use "hashivim/vim-nomadproject"
+  use 'hashivim/vim-packer'
+  use 'hashivim/vim-nomadproject'
 
   -- docker/kubernetes
   use 'andrewstuart/vim-kubernetes'
@@ -191,4 +191,7 @@ return require('packer').startup(function(use)
     'Fymyte/rasi.vim',
     ft = 'rasi',
   }
+
+  -- Nvim colorizer
+  use 'norcalli/nvim-colorizer.lua'
 end)
