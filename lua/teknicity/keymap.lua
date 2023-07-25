@@ -81,8 +81,8 @@ km.set("n", "<C-H>", "<C-W><C-H>")
 -- Switch  tabs
 km.set("n", "<C-T>n", "<cmd>tabnext<CR>")
 km.set("n", "<C-T>p", "<cmd>tabprevious<CR>")
-km.set("n", "<C-B>d", "<cmd>tabclose<CR>")
-km.set("n", "<C-B>c", "<cmd>tabclose<CR>")
+km.set("n", "<C-T>d", "<cmd>tabclose<CR>")
+km.set("n", "<C-T>c", "<cmd>tabclose<CR>")
 
 -- Switch buffer
 km.set("n", "<C-B>n", "<cmd>bn<CR>")
@@ -91,7 +91,7 @@ km.set("n", "<C-B>d", "<cmd>bd<CR>")
 km.set("n", "<C-B>c", "<cmd>bd<CR>")
 
 -- Terminal navigation
-km.set({ "n", "t" }, "<leader>t", "<cmd>ToggleTerm size=20<CR>")
+km.set({ "n", "t" }, "<leader>tt", "<cmd>ToggleTerm size=20<CR>")
 km.set('t', '<esc>', [[<C-\><C-n>]])
 km.set('t', 'jk', [[<C-\><C-n>]])
 km.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]])

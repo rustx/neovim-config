@@ -12,3 +12,12 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = '*',
   command = '%s/\\s\\+$//e'
 })
+
+-- Clean end of lines at save
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = {'templates/*yaml', '*/templates/*tpl', '*.gotmpl', 'helmfile*.yaml'},
+  callback = function()
+    vim.opt_local.filetype = 'helm'
+  end
+})
+
